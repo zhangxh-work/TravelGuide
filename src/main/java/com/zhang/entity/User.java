@@ -3,7 +3,7 @@ package com.zhang.entity;
 import java.io.Serializable;
 
 /**
- * @author zxh
+ * @author zhangxh
  * @date 2020/3/24 15:57
  *
  * 用户实体类

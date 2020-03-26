@@ -11,15 +11,12 @@ import org.springframework.stereotype.Service;
  *
  * 用户登录service层
  */
-@Service
+@Service("loginService")
 public class LoginServiceImpl implements LoginService {
 
     //依赖于Dao
     @Autowired
     private LoginMapper loginMapper;
-    public void setLoginMapper(LoginMapper loginMapper) {
-        this.loginMapper = loginMapper;
-    }
 
     //查询用户是否存在
     public User findUserByIdAndPwd(User requestUser) {
@@ -27,5 +24,10 @@ public class LoginServiceImpl implements LoginService {
         User user = loginMapper.findUserByIdAndPwd(requestUser);
         System.out.println("service:"+user);
         return user;
+    }
+
+    @Override
+    public void regist(User requestUser) {
+       loginMapper.regist(requestUser);
     }
 }

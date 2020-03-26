@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,16 +20,11 @@ import java.util.Map;
 @Controller
 @RequestMapping("/login")
 public class LoginController {
-    @Autowired
+    //注入service层
+    @Resource(name="loginService")
     private LoginService loginService;
 
-    public void setLoginService(LoginService loginService) {
-        this.loginService = loginService;
-    }
-    //判断是否可以登录成功
-    private boolean flag = true;
-    //查询用户是否存在-登录
-
+    //查询用户是否存在
     @ResponseBody
     @RequestMapping("/findUserByIdAndPwd")
     public Map<String, String> findUserByIdAndPwd(String username, String password ) {
@@ -42,6 +38,25 @@ public class LoginController {
             map.put("msg","用户不存在");
         }else {
             map.put("msg","用户存在");
+        }
+        return map;
+    }
+    //查询用户是否存在
+    @ResponseBody
+    @RequestMapping("/regist")
+    public Map<String, String> regist(String username, String password ,int phone) {
+        System.out.println("controller层接收的参数值username:"+username+"- password:"+ password+"- phone:"+ phone);
+        User requestUser = new User ();
+        requestUser.setUserName(username);
+        requestUser.setPassword(password);
+        requestUser.setPhone(phone);
+        User user = loginService.findUserByIdAndPwd(requestUser);
+        Map<String,String> map = new HashMap<String ,String>();
+        if (user==null){
+            loginService.regist(requestUser);
+            map.put("msg","注册成功");
+        }else {
+            map.put("msg","用户已存在,注册失败!");
         }
         return map;
     }

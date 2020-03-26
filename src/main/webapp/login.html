@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#submit').click(function (){
+                var name = $('#username').val();
+                var password = $('#password').val();
+                $.ajax({
+                    url : "login/findUserByIdAndPwd",
+                    data:{"username": name,"password":password},
+                    dataType:"json",
+                    type:"post",
+                    success:function (result) {
+                        alert(result.msg);
+                    }
+                })
+            });
+            $('#usernameRegist').blur(function () {
+                var name = $('#usernameRegist').val();
+                var span = $('#regist_name_span');
+                $.ajax(
+                    "login/findName",
+                    {"username": name},
+                    function (result) {
+                        if (result.isExsit){
+                            span.css("color","red");
+                            span.html(result.msg);
+                        }else {
+                            span.css("color","green");
+                            span.html(result.msg);
+                        }
+                });
+            });
+            $('#submitRegist').click(function (){
+                var name = $('#usernameRegist').val();
+                var password = $('#passwordRegist').val();
+                var phone = $('#phoneRegist').val();
+                $.ajax({
+                    url : "login/regist",
+                    data:{"username": name,"password":password,"phone":phone},
+                    dataType:"json",
+                    type:"post",
+                    success:function (result) {
+                        alert(result.msg);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<h2>Hello World!</h2>
+    <div style="border: 1px solid red ;height:200px;width: 1000px;" >
+        姓名:<input type="text" id="username"><br>
+        密码:<input type="text" id="password"><br>
+        <input type="submit" id="submit" value="立即登录"><br>
+    </div>
+    <div style="border: 1px solid green;height:200px;width: 1000px;">
+        姓名:<input type="text" id="usernameRegist"><span id="regist_name_span">请输入姓名</span><br>
+        密码:<input type="text" id="passwordRegist"><br>
+        手机:<input type="text" id="phoneRegist"><br>
+        <input type="submit" id="submitRegist" value="立即注册"><br>
+    </div>
+</body>
+</html>

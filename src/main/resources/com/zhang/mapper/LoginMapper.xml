@@ -9,4 +9,7 @@
         select * from user where username = #{userName} and password = #{password}
     </select>
 
+    <insert id="regist" parameterType="com.zhang.entity.User" >
+        insert into user(username,password,phone) values (#{userName},#{password},#{phone})
+    </insert>
 </mapper>
