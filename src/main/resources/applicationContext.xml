@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+    <!-- 开启注解的扫描,Spring配置文件只扫描dao和service包 -->
+    <context:component-scan base-package="com.zhang">
+        <!-- 不扫描controller包 -->
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"  />
+    </context:component-scan>
+
+    <!-- 加载db.properties文件 -->
+    <context:property-placeholder ignore-unresolvable="true" location="classpath:db.properties"/>
+
+    <!-- 配置配置数据库信息（替代mybatis的配置文件conf.xml） -->
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"></property>
+        <property name="url" value="${jdbc.url}"></property>
+        <property name="username" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+    </bean>
+
+    <!-- 在SpringIOC容器中创建MyBatis的核心类SqlSessionFactory -->
+    <bean   id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!-- 加载数据源 -->
+        <property name="dataSource" ref="dataSource"/>
+        <!-- 加载mapper.xml文件 -->
+        <property name="mapperLocations" value="classpath:com/zhang/mapper/*.xml" />
+    </bean>
+    <!-- Spring整合MyBatis,将MyBatis的核心类SqlSessionFactory交给Spring管理 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <!-- 指定批量产生哪个包里的mapper对象,产生与之对应的动态代理对象 (对象名为接口首字母小写的全名) -->
+        <property name="basePackage" value="com.zhang.mapper" />
+    </bean>
+
+
+</beans>
