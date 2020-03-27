@@ -13,4 +13,7 @@ public interface LoginService {
     public User findUserByIdAndPwd(User requestUser);
     //用户注册
     public void regist(User requestUser);
+
+    //查询用户名是否存在
+    public User findUserByName(String username);
 }

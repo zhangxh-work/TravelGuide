@@ -30,4 +30,7 @@ public class LoginServiceImpl implements LoginService {
     public void regist(User requestUser) {
        loginMapper.regist(requestUser);
     }
+
+    @Override
+    public User findUserByName(String username) { return loginMapper.findUserByName(username);}
 }

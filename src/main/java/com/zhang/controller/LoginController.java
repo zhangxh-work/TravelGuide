@@ -60,4 +60,20 @@ public class LoginController {
         }
         return map;
     }
+    //查询用户名是否存在
+    @ResponseBody
+    @RequestMapping("/findUserByName")
+    public Map<String, Object> findUserByName(String username) {
+        System.out.println("controller层接收的参数值username:"+username);
+        User user = loginService.findUserByName(username);
+        Map<String,Object> map = new HashMap<String ,Object>();
+        if (user==null){
+            map.put("isExsit",true);
+            map.put("msg","用户名可以用哦!");
+        }else {
+            map.put("isExsit",false);
+            map.put("msg","这个名字太火爆了,请换一个吧!");
+        }
+        return map;
+    }
 }

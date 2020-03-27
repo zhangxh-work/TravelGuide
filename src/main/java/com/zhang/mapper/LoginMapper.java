@@ -11,4 +11,6 @@ public interface LoginMapper {
     public User findUserByIdAndPwd(User user);
 
     public void regist(User user);
+
+    public User findUserByName(String username);
 }
