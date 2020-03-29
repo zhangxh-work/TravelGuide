@@ -27,17 +27,19 @@ public class LoginController {
     //查询用户是否存在
     @ResponseBody
     @RequestMapping("/findUserByIdAndPwd")
-    public Map<String, String> findUserByIdAndPwd(String username, String password ) {
+    public Map<String, Object> findUserByIdAndPwd(String username, String password ) {
         System.out.println("controller层接收的参数值username:"+username+"- password:"+ password);
         User requestUser = new User ();
         requestUser.setUserName(username);
         requestUser.setPassword(password);
         User user = loginService.findUserByIdAndPwd(requestUser);
-        Map<String,String> map = new HashMap<String ,String>();
+        Map<String,Object> map = new HashMap<String ,Object>();
         if (user==null){
-            map.put("msg","用户不存在");
+            map.put("isExsit",false);
+            map.put("msg","用户名或密码错误");
         }else {
-            map.put("msg","用户存在");
+            map.put("isExsit",true);
+            map.put("msg","登录成功");
         }
         return map;
     }

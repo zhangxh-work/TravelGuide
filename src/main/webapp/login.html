@@ -5,19 +5,29 @@
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
+            // 检查登录是否成功
             $('#login').click(function (){
                 var name = $('#username').val();
                 var password = $('#password').val();
+                var span = $('loginSpan');
                 $.ajax({
                     url : "login/findUserByIdAndPwd",
                     data:{"username": name,"password":password},
                     dataType:"json",
                     type:"post",
                     success:function (result) {
-                        alert(result.msg);
+                        if (result.isExsit){
+                            span.css("color","green");
+                            span.innerHTML(result.msg);
+                        } else {
+                            span.css("color","red");
+                            span.innerHTML(result.msg);
+                        }
                     }
                 })
             });
+
+            // 检擦用户名是否可用
             $('#usernameRegist').blur(function () {
                 var name = $('#usernameRegist').val();
                 var span = $('#regist_name_span');
@@ -37,6 +47,8 @@
                     }
                 });
             });
+
+            //检查是否注册成功
             $('#regist').click(function (){
                 var name = $('#usernameRegist').val();
                 var password = $('#passwordRegist').val();
@@ -58,7 +70,8 @@
 <h2>Hello World!</h2>
     <div style="border: 1px solid red ;height:200px;width: 1000px;" >
         姓名:<input type="text" id="username"><br>
-        密码:<input type="text" id="password"><br>
+        密码:<input type="text" id="password"><span id="loginSpan">请输入用户名和密码</span><br>
+
         <input type="submit" id="login" value="立即登录"><br>
     </div>
     <div style="border: 1px solid green;height:200px;width: 1000px;">
