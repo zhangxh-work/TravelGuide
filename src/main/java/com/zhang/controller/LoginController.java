@@ -74,7 +74,24 @@ public class LoginController {
             map.put("msg","用户名可以用哦!");
         }else {
             map.put("isExsit",false);
-            map.put("msg","这个名字太火爆了,请换一个吧!");
+            map.put("msg","这个名字太火爆了,换一个试试吧!");
+        }
+        return map;
+    }
+    //查询手机号码是否存在
+    @ResponseBody
+    @RequestMapping("/findUserByPhone")
+    public Map<String, Object> findUserByPhone(int phone) {
+        System.out.println("controller层接收的参数值phone:"+phone);
+        Map<String,Object> map = new HashMap<String ,Object>();
+        User user = loginService.findUserByPhone(phone);
+        System.out.println(user);
+        if (user==null){
+            map.put("isExsit",true);
+            map.put("msg","手机号码可以用哦!");
+        }else {
+            map.put("isExsit",false);
+            map.put("msg","手机号码已被占用,换一个试试吧!");
         }
         return map;
     }

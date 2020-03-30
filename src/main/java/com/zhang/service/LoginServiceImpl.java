@@ -33,4 +33,7 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public User findUserByName(String username) { return loginMapper.findUserByName(username);}
+
+    @Override
+    public User findUserByPhone(int phone) {return loginMapper.findUserByPhone(phone);}
 }

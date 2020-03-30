@@ -13,4 +13,6 @@ public interface LoginMapper {
     public void regist(User user);
 
     public User findUserByName(String username);
+
+    public User findUserByPhone(int phone);
 }

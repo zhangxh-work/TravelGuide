@@ -16,4 +16,6 @@ public interface LoginService {
 
     //查询用户名是否存在
     public User findUserByName(String username);
+    //查询手机号码是否被占用
+    public User findUserByPhone(int phone);
 }

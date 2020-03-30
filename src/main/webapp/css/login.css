@@ -14,7 +14,32 @@
 h3 {
     font-family: DFKai-SB;
 }
-
+#otherLogin{
+    height: 100px;
+}
+#otherLogin h6{
+    color: gray;
+    margin-left: 3.5rem;
+}
+#otherLogin li{
+    list-style: none;
+    height: 2rem;
+    width: 3rem;
+    float: left;
+    margin-top: 0.5rem;
+    background-color: green;
+    border: 1px solid red;
+    cursor: pointer;
+}
+#otherLogin li:hover{
+    opacity: 0.5;
+}
+#otherLogin li:nth-child(1){
+    margin-right: 2.1rem;
+}
+#otherLogin li:nth-child(2){
+    margin-right: 2.1rem;
+}
 /*登路表单*/
 #username-lg-sp-div {
     text-align: left;
