@@ -1,85 +1,100 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="zh-cn">
 <head>
-    <meta charset="UTF-8"/>
-    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            // 检查登录是否成功
-            $('#login').click(function (){
-                var name = $('#username').val();
-                var password = $('#password').val();
-                var span = $('loginSpan');
-                $.ajax({
-                    url : "login/findUserByIdAndPwd",
-                    data:{"username": name,"password":password},
-                    dataType:"json",
-                    type:"post",
-                    success:function (result) {
-                        if (result.isExsit){
-                            span.css("color","green");
-                            span.innerHTML(result.msg);
-                        } else {
-                            span.css("color","red");
-                            span.innerHTML(result.msg);
-                        }
-                    }
-                })
-            });
-
-            // 检擦用户名是否可用
-            $('#usernameRegist').blur(function () {
-                var name = $('#usernameRegist').val();
-                var span = $('#regist_name_span');
-                $.ajax({
-                    url : "login/findUserByName",
-                    data:{"username": name},
-                    dataType:"json",
-                    type:"post",
-                    success : function (result) {
-                        if (result.isExsit){
-                            span.css("color","green");
-                            span.html(result.msg);
-                        }else {
-                            span.css("color","red");
-                            span.html(result.msg);
-                        }
-                    }
-                });
-            });
-
-            //检查是否注册成功
-            $('#regist').click(function (){
-                var name = $('#usernameRegist').val();
-                var password = $('#passwordRegist').val();
-                var phone = $('#phoneRegist').val();
-                $.ajax({
-                    url : "login/regist",
-                    data:{"username": name,"password":password,"phone":phone},
-                    dataType:"json",
-                    type:"post",
-                    success:function (result) {
-                        alert(result.msg);
-                    }
-                });
-            });
-        });
-    </script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/login.css"/>
+    <title>登录or注册</title>
+    <script src="js/jquery-3.4.1.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/login.js"></script>
 </head>
 <body>
-<h2>Hello World!</h2>
-    <div style="border: 1px solid red ;height:200px;width: 1000px;" >
-        姓名:<input type="text" id="username"><br>
-        密码:<input type="text" id="password"><span id="loginSpan">请输入用户名和密码</span><br>
+<!-------------------------------头部-Begin--------------------------------->
+<header class="login-header">
+    <div class="top-bar">
+        <div class="container">
+            <div class="row  no-gutters">
+                <!--登录部分-->
+                <div class="login col-6">
+                    <h3>立即登录</h3>
+                    <hr/>
+                    <div>
+                        <!--用户名-->
+                        <div class="input-group-lg col-11 col-sm-10 ml-2 ml-sm-4 ml-md-4 ml-lg-5 mt-4">
+                            <input type="text" id="username-lg" class="form-control" placeholder="请输入用户名/手机号">
 
-        <input type="submit" id="login" value="立即登录"><br>
+                            <!-- 账号提示框 -->
+							<div id="username-lg-sp-div" class="pl-3 mt-2">
+								<span id="username-lg-sp"></span>
+							</div>
+                        </div>
+
+                        <!--密码-->
+                        <div class="input-group-lg col-11 col-sm-10 ml-2 ml-sm-4 ml-md-4 ml-lg-5 mt-2">
+                            <input type="text" id="password-lg" class="form-control" placeholder="请输入用密码">
+                            <!-- 密码提示框 -->
+                            <div id="password-lg-sp-div" class="pl-3 mt-2">
+                                <span id="password-lg-sp"></span>
+                            </div>
+                        </div>
+
+                        <!-- 登录按钮 -->
+                        <button id="btn-lg" type="button" class="btn btn-outline-success col-8 col-sm-8 mt-5 mb-3">
+                            Login
+                        </button>
+                    </div>
+                </div>
+                <!--注册部分-->
+                <div class="regist col-6">
+                    <h3>加入我们</h3>
+                    <hr/>
+                    <div style="border-left: 0.0625rem solid #e5e5e5;">
+                        <div class="input-group-md col-11 col-sm-8 ml-3 ml-sm-5 ml-md-6 ml-lg-5 mt-4">
+                            <input type="text" id="username-rg" class="form-control" placeholder="请输入用户名">
+                            <div id="username-rg-sp-div" class="ml-3 mt-1">
+                                <span id="username-rg-sp"></span>
+                            </div>
+                        </div>
+                        <div class="input-group-md col-11 col-sm-8 ml-3 ml-sm-5 ml-md-6 ml-lg-5">
+                            <input type="text" id="password-rg" class="form-control" placeholder="请输入用密码">
+                            <div id="password-rg-sp-div" class="ml-3 mt-1">
+                                <span id="password-rg-sp"></span>
+                            </div>
+                        </div>
+                        <div class="input-group-md col-11 col-sm-8 ml-3 ml-sm-5 ml-md-6 ml-lg-5">
+                            <input type="text" id="password2-rg" class="form-control" placeholder="请再次输入密码">
+                            <div id="password2-rg-sp-div" class="ml-3 mt-1">
+                                <span id="password2-rg-sp"></span>
+                            </div>
+                        </div>
+                        <div class="input-group-md col-11 col-sm-8 ml-3 ml-sm-5 ml-md-6 ml-lg-5">
+                            <input type="text" id="phone-rg" class="form-control" placeholder="请输入手机号">
+                            <div id="phone-rg-sp-div" class="ml-3 mt-1">
+                                <span id="phone-rg-sp"></span>
+                            </div>
+                        </div>
+                        <div class="input-group-md col-11 col-sm-8 ml-3 ml-sm-5 ml-md-6 ml-lg-5">
+                            <input type="text" id="number-rg" class="form-control" placeholder="请输入短信验证码">
+                            <div id="number-rg-sp-div" class="ml-3 mt-1">
+                                <span id="number-rg-sp"></span>
+                            </div>
+                        </div>
+                        <button id="btn-rg" type="button" class="btn btn-outline-danger col-8 col-sm-5 mt-4 mb-5 " style="margin-left: -6.1rem !important;">
+                            Regist
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div style="border: 1px solid green;height:200px;width: 1000px;">
-        姓名:<input type="text" id="usernameRegist"><span id="regist_name_span">请输入姓名</span><br>
-        密码:<input type="text" id="passwordRegist"><br>
-        请再次输入密码:<input type="text" id="passwordRegistConfirm"><br>
-        手机:<input type="text" id="phoneRegist"><br>
-        <input type="submit" id="regist" value="立即注册"><br>
-    </div>
+</header>
+<!-------------------------------头部-End----------------------------------->
+
+
 </body>
+
 </html>
