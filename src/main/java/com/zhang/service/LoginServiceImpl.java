@@ -19,21 +19,14 @@ public class LoginServiceImpl implements LoginService {
     private LoginMapper loginMapper;
 
     //查询用户是否存在
-    public User findUserByIdAndPwd(User requestUser) {
-        System.out.println("用户登录service层---findUserByIdAndPwd()");
-        User user = loginMapper.findUserByIdAndPwd(requestUser);
-        System.out.println("service:"+user);
-        return user;
-    }
+    public User findUserByIdAndPwd(User requestUser) { return loginMapper.findUserByIdAndPwd(requestUser);}
 
     @Override
-    public void regist(User requestUser) {
-       loginMapper.regist(requestUser);
-    }
+    public int regist(User user) {return loginMapper.regist(user);}
 
     @Override
     public User findUserByName(String username) { return loginMapper.findUserByName(username);}
 
     @Override
-    public User findUserByPhone(int phone) {return loginMapper.findUserByPhone(phone);}
+    public int findUserByPhone(String  phone) {return loginMapper.findUserByPhone(phone);}
 }

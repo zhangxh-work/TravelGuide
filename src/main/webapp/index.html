@@ -11,10 +11,15 @@
   <script src="js/jquery-3.4.1.js"></script>
   <script src="js/popper.js"></script>
   <script src="js/bootstrap.js"></script>
+  <script>
+    $("#login-btn").click(function () {
+      $('#login').location.reload();
+    });
+  </script>
 </head>
 <body>
 <!-- Large modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>
+<button id="login-btn" type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>
 
 
 
@@ -23,7 +28,7 @@
     <div class="modal-content">
       <div class="row no-gutters">
         <div class="col-12" >
-          <iframe class="col-12 p-0" height="580px" src="login.html" />
+          <iframe id="login" class="col-12 p-0" height="580px" src="login.html" frameborder="no" />
         </div>
       </div>
     </div>

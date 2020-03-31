@@ -12,10 +12,10 @@ public interface LoginService {
     //查询用户是否存在
     public User findUserByIdAndPwd(User requestUser);
     //用户注册
-    public void regist(User requestUser);
+    public int regist(User user);
 
     //查询用户名是否存在
     public User findUserByName(String username);
     //查询手机号码是否被占用
-    public User findUserByPhone(int phone);
+    public int findUserByPhone(String phone);
 }

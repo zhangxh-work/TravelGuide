@@ -10,9 +10,9 @@ import com.zhang.entity.User;
 public interface LoginMapper {
     public User findUserByIdAndPwd(User user);
 
-    public void regist(User user);
+    public int regist(User user);
 
     public User findUserByName(String username);
 
-    public User findUserByPhone(int phone);
+    public int findUserByPhone(String phone);
 }

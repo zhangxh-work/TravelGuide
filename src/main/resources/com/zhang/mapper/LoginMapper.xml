@@ -17,7 +17,7 @@
         select * from user where username = #{username}
     </select>
 
-    <select id="findUserByPhone" parameterType="int" resultType="com.zhang.entity.User">
+    <select id="findUserByPhone" parameterType="string" resultType="int">
         select * from user where phone = #{phone}
     </select>
 </mapper>

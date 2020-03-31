@@ -12,7 +12,7 @@ public class User implements Serializable {
     private int id;
     private String userName;
     private String password;
-    private int phone;
+    private String phone;
     public int getId() {
         return id;
     }
@@ -37,11 +37,18 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public User(String userName, String password, String phone) {
+        this.userName = userName;
+        this.password = password;
+        this.phone = phone;
+    }
+    public User() {
+    }
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

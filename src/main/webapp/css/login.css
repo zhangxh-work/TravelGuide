@@ -27,18 +27,16 @@ h3 {
     width: 3rem;
     float: left;
     margin-top: 0.5rem;
-    background-color: green;
-    border: 1px solid red;
     cursor: pointer;
 }
 #otherLogin li:hover{
     opacity: 0.5;
 }
 #otherLogin li:nth-child(1){
-    margin-right: 2.1rem;
+    margin-right: 2.2rem;
 }
 #otherLogin li:nth-child(2){
-    margin-right: 2.1rem;
+    margin-right: 2.2rem;
 }
 /*登路表单*/
 #username-lg-sp-div {
@@ -78,9 +76,17 @@ h3 {
     font-size: 12px;
 }
 
-#number-rg-sp-div {
+#checkcode-rg-sp-div {
     text-align: left;
     height: 1.7rem;
     font-size: 12px;
 }
-
+#checkcode-rg{
+    float: left;
+}
+#canvas-div{
+    margin-left: -1rem;
+    margin-right: 9px;
+    float: left;
+    cursor: pointer;
+}
