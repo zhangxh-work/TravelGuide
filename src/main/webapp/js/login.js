@@ -32,7 +32,23 @@ $(document).ready(function () {
                 type: "post",
                 success: function (result) {
                     if (result.isExsit) {
-                        alert("登录成功!")
+                        //关闭模态框
+                        $("#modal").modal("hide");
+                        //给出"登录成功"提示
+                        new jBox('Notice', {
+                            attributes: {
+                                x: 'right',
+                                y: 'top'
+                            },
+                            stack: false,
+                            animation: {
+                                open: 'tada',
+                                close: 'zoomIn'
+                            },
+                            color: "red",
+                            content: '恭喜您,登录成功了哦!'
+                        });
+                        $("#login_span").html(result.user.userName);
                     } else {
                         alert("账号或密码错误!");
                     }
@@ -135,7 +151,7 @@ $(document).ready(function () {
     $("#phone-rg").change(function () {
         var phone = $("#phone-rg").val();
         var phone_span = $("#phone-rg-sp");
-        var phone_rule = /^1[3,5,8]\d{9}$/;
+        var phone_rule = /^1\d{10}$/;
         if (phone == "") {
             phone_span.css("color", "red");
             phone_span.html("*&nbsp;&nbsp;手机号码不能为空");
@@ -163,24 +179,7 @@ $(document).ready(function () {
             }
         }
     });
-});
-function load() {
-    //登录
-    var username = $("#username-lg").html("");
-    var password = $("#password-lg").html("");
-    var user_span = $("#username-l.html"
- ;   var pwd_span = $("#password-l.html"
- ;   //注册
-    var username = $("#username-rg").html("");
-    var password = $("#password-rg").html("");
-    var password2 = $("#password2-rg").html("");
-    var phone = $("#phone-rg").html("");
-    var checkcode = $("#checkcod.html"
- ;
-    var username_sp = $("#username-rg-sp").html("");
-    var password_sp = $("#password-rg-sp").html("");
-    var password2_sp = $("#password2-rg-sp").html("");
-    var phone_sp = $("#phone-rg-sp").html("");
-    var checkcode_sp = $("#checkcode-rg-sp").html("");
-}
+    //获取cookie值
+    // $("#login_span").html($.cookie("username"));
 
+});

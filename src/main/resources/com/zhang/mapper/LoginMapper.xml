@@ -5,19 +5,20 @@
 
 <!-- namespace:该mapper.xml映射文件的 唯一标识 -->
 <mapper namespace="com.zhang.mapper.LoginMapper">
+    <!-- 用户登录 -->
     <select id="findUserByIdAndPwd" parameterType="com.zhang.entity.User" resultType="com.zhang.entity.User">
-        select * from user where username = #{userName} and password = #{password}
+        select * from user where username = #{userName} or phone = #{phone} and password = #{password}
     </select>
-
+    <!-- 用户注册 -->
     <insert id="regist" parameterType="com.zhang.entity.User" >
         insert into user(username,password,phone) values (#{userName},#{password},#{phone})
     </insert>
-
+    <!-- 验证用户名是否唯一 -->
     <select id="findUserByName" parameterType="string" resultType="com.zhang.entity.User">
         select * from user where username = #{username}
     </select>
-
+    <!-- 验证手机号是否唯一 -->
     <select id="findUserByPhone" parameterType="string" resultType="int">
-        select * from user where phone = #{phone}
+        select COUNT(*) from user where phone = #{phone}
     </select>
 </mapper>

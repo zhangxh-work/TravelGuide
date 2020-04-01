@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,18 +30,23 @@ public class LoginController {
     //查询用户是否存在
     @ResponseBody
     @RequestMapping("/findUserByIdAndPwd")
-    public Map<String, Object> findUserByIdAndPwd(String username, String password ) {
+    public Map<String, Object> findUserByIdAndPwd(String username, String password , HttpServletResponse response) {
         System.out.println("controller层接收的参数值username:"+username+"- password:"+ password);
         User requestUser = new User ();
         requestUser.setUserName(username);
+        requestUser.setPhone(username);
         requestUser.setPassword(password);
         User user = loginService.findUserByIdAndPwd(requestUser);
+
         Map<String,Object> map = new HashMap<String ,Object>();
         if (user==null){
             map.put("isExsit",false);
             map.put("msg","用户名或密码错误");
         }else {
+            Cookie cookie = new Cookie("username",user.getUserName());
+            response.addCookie(cookie);
             map.put("isExsit",true);
+            map.put("user",user);
             map.put("msg","登录成功");
         }
         return map;
@@ -72,10 +79,10 @@ public class LoginController {
         Map<String,Object> map = new HashMap<String ,Object>();
         if (user==null){
             map.put("isExsit",true);
-            map.put("msg","用户名可以用哦!");
+            map.put("msg","*&nbsp;&nbsp;用户名可以用哦!");
         }else {
             map.put("isExsit",false);
-            map.put("msg","这个名字太火爆了,换一个试试吧!");
+            map.put("msg","*&nbsp;&nbsp;这个名字太火爆了,换一个试试吧!");
         }
         return map;
     }
@@ -88,7 +95,7 @@ public class LoginController {
         System.out.println("controller层接收的参数值phone:"+phone);
         Map<String,Object> map = new HashMap<String ,Object>();
         int flag = loginService.findUserByPhone(phone);
-        if (flag == 1){
+        if (flag != 1){
             map.put("isExsit",true);
             map.put("msg","*&nbsp;&nbsp;手机号码可以用哦!");
         }else {
