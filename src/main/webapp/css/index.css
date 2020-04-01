@@ -1,0 +1,11 @@
+body{
+	color: #000;
+	font-family: "arial rounded mt bold";
+	height: 3000px;
+}
+a:hover{
+	text-decoration: none;
+}
+ol,ul{
+	list-style: none;
+}
