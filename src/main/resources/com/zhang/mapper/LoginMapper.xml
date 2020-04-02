@@ -7,7 +7,7 @@
 <mapper namespace="com.zhang.mapper.LoginMapper">
     <!-- 用户登录 -->
     <select id="findUserByIdAndPwd" parameterType="com.zhang.entity.User" resultType="com.zhang.entity.User">
-        select * from user where username = #{userName} or phone = #{phone} and password = #{password}
+        select * from user where (username = #{userName} or phone = #{phone}) and password = #{password}
     </select>
     <!-- 用户注册 -->
     <insert id="regist" parameterType="com.zhang.entity.User" >

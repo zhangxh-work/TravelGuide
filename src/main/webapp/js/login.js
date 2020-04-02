@@ -4,7 +4,6 @@ $(document).ready(function () {
     var password_flag;
     var password2_flag;
     var phone_flag;
-
     //登录时的验证
     $("#btn-lg").click(function () {
         var username = $("#username-lg").val();
@@ -38,17 +37,19 @@ $(document).ready(function () {
                         new jBox('Notice', {
                             attributes: {
                                 x: 'right',
-                                y: 'top'
+                                y: 'bottom'
                             },
                             stack: false,
                             animation: {
                                 open: 'tada',
                                 close: 'zoomIn'
                             },
-                            color: "red",
+                            color: "green",
                             content: '恭喜您,登录成功了哦!'
                         });
+                        $("#login-div-1").hide();
                         $("#login_span").html(result.user.userName);
+                        $("#login-div-2").show();
                     } else {
                         alert("账号或密码错误!");
                     }
@@ -179,7 +180,4 @@ $(document).ready(function () {
             }
         }
     });
-    //获取cookie值
-    // $("#login_span").html($.cookie("username"));
-
 });

@@ -1,3 +1,4 @@
+/**************************************** 通用样式 ************************************/
 body{
 	color: #000;
 	font-family: "arial rounded mt bold";
@@ -6,6 +7,61 @@ body{
 a:hover{
 	text-decoration: none;
 }
-ol,ul{
+ol,ul {
 	list-style: none;
 }
+/**************************************** 头部 ************************************/
+
+#header .top-bar{
+	height: 2rem;
+	line-height: 1.95rem;
+	border-bottom: 0.05rem solid #e0e0e0;
+}
+#header .top-bar .container{
+	border: none !important;
+}
+#header .top-bar .container .row>div+div{
+	border-left: 1px solid #e0e0e0;
+}
+/*****微信公众号*******/
+#header .top-bar .container .row .top-bar-1 a{
+	position: relative;
+}
+#header .top-bar .container .row .top-bar-1 a img{
+	z-index: 999;
+	display: none;
+}
+#header .top-bar .container .row .top-bar-1 a:hover img{
+	position: relative;
+	top: 5px;
+	left: 80px;
+	display: block;
+	color: #343a40;
+}
+/********手机号*********/
+#header .top-bar .container .row .top-bar-2 span:hover{
+	color: #343a40;
+}
+/********注册登录*********/
+login-div-2{
+	display: none;
+}
+
+/*************导航栏************/
+#header nav .container div ul>li>a{
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-left: 0.7rem;
+}
+#header nav .container div ul>li>a:hover{
+	border-bottom: 0.2rem solid #3299cc;
+}
+
+
+/**************************************** 轮播图 **********************************/
+/**************************************** 头部 ************************************/
+/**************************************** 头部 ************************************/
+/**************************************** 头部 ************************************/
+/**************************************** 头部 ************************************/
