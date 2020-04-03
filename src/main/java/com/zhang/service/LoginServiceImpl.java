@@ -18,15 +18,19 @@ public class LoginServiceImpl implements LoginService {
     @Autowired
     private LoginMapper loginMapper;
 
-    //查询用户是否存在
+    //登录查询
+    @Override
     public User findUserByIdAndPwd(User requestUser) { return loginMapper.findUserByIdAndPwd(requestUser);}
 
+    //注册插入
     @Override
     public int regist(User user) {return loginMapper.regist(user);}
 
+    //查询用户名是否被占用
     @Override
     public User findUserByName(String username) { return loginMapper.findUserByName(username);}
 
+    //查询手机号是否被占用
     @Override
     public int findUserByPhone(String  phone) {return loginMapper.findUserByPhone(phone);}
 }

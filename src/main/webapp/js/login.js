@@ -37,7 +37,7 @@ $(document).ready(function () {
                         new jBox('Notice', {
                             attributes: {
                                 x: 'right',
-                                y: 'bottom'
+                                y: 'top'
                             },
                             stack: false,
                             animation: {
@@ -58,7 +58,7 @@ $(document).ready(function () {
         }
     });
 
-    //注册时的验证
+    //注册表单验证
     $("#btn-rg").click(function () {
         // 注册表单数据
         if (username_flag == 1 && password_flag == 1 && password2_flag == 1 && phone_flag == 1) {
@@ -115,6 +115,7 @@ $(document).ready(function () {
             }
         }
     });
+
     //注册密码验证
     $("#password-rg").change(function () {
         var password = $("#password-rg").val();
@@ -134,6 +135,7 @@ $(document).ready(function () {
             }
         }
     });
+
     //注册确认密码验证
     $("#password2-rg").change(function () {
         var password = $("#password-rg").val();
@@ -148,6 +150,7 @@ $(document).ready(function () {
             password2_span.html("*&nbsp;&nbsp;两次密码输入不一致,请再次检查");
         }
     });
+
     //注册手机号码验证
     $("#phone-rg").change(function () {
         var phone = $("#phone-rg").val();

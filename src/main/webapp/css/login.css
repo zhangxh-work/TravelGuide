@@ -1,3 +1,4 @@
+/***********************************************************模态框*****************************************************/
 .container {
     text-align: center;
 }
@@ -13,6 +14,7 @@
 h3 {
     font-family: DFKai-SB;
 }
+/******** 其他登录方式 *********/
 #otherLogin{
     height: 100px;
 }
@@ -37,7 +39,7 @@ h3 {
 #otherLogin li:nth-child(2){
     margin-right: 2.2rem;
 }
-/*登路表单*/
+/************** 登录表单*************/
 #username-lg-sp-div {
     text-align: left;
     height: 1.7rem;
@@ -50,7 +52,7 @@ h3 {
 	font-size: 14px;
 }
 
-/*注册表单*/
+/************** 注册表单*************/
 #username-rg-sp-div {
     text-align: left;
     height: 1.7rem;

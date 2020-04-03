@@ -9,10 +9,10 @@ import java.io.Serializable;
  * 用户实体类
  */
 public class User implements Serializable {
-    private int id;
-    private String userName;
-    private String password;
-    private String phone;
+    private int id;             //用户ID
+    private String userName;    //用户名
+    private String password;    //密码
+    private String phone;       //手机号
     public int getId() {
         return id;
     }

@@ -9,13 +9,15 @@ import com.zhang.entity.User;
  * 用户登录service层接口
  */
 public interface LoginService {
-    //查询用户是否存在
+    //登录查询
     public User findUserByIdAndPwd(User requestUser);
-    //用户注册
+
+    //注册插入
     public int regist(User user);
 
     //查询用户名是否存在
     public User findUserByName(String username);
+
     //查询手机号码是否被占用
     public int findUserByPhone(String phone);
 }

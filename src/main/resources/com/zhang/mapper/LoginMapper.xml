@@ -3,21 +3,24 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- namespace:该mapper.xml映射文件的 唯一标识 -->
+<!-- namespace:该mapper.xml映射文件的 唯一标识,与同名的.java文件对应 -->
 <mapper namespace="com.zhang.mapper.LoginMapper">
     <!-- 用户登录 -->
     <select id="findUserByIdAndPwd" parameterType="com.zhang.entity.User" resultType="com.zhang.entity.User">
         select * from user where (username = #{userName} or phone = #{phone}) and password = #{password}
     </select>
+
     <!-- 用户注册 -->
     <insert id="regist" parameterType="com.zhang.entity.User" >
         insert into user(username,password,phone) values (#{userName},#{password},#{phone})
     </insert>
-    <!-- 验证用户名是否唯一 -->
+
+    <!-- 查询用户名是否被占用 -->
     <select id="findUserByName" parameterType="string" resultType="com.zhang.entity.User">
         select * from user where username = #{username}
     </select>
-    <!-- 验证手机号是否唯一 -->
+
+    <!-- 查询手机号是否被占用 -->
     <select id="findUserByPhone" parameterType="string" resultType="int">
         select COUNT(*) from user where phone = #{phone}
     </select>
