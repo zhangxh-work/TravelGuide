@@ -31,7 +31,7 @@ $(document).ready(function () {
                 type: "post",
                 success: function (result) {
                     if (result.isExsit) {
-                        //关闭模态框
+                        //自动关闭模态框
                         $("#modal").modal("hide");
                         //给出"登录成功"提示
                         new jBox('Notice', {
